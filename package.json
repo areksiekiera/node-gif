@@ -1,0 +1,10 @@
+{
+  "name": "lights_generator",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.7.7",
+    "express": "^4.14.0",
+    "imagemagick": "^0.1.3"
+  }
+}
