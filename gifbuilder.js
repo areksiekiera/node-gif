@@ -10,6 +10,8 @@ aws.config.update(config.aws);
 
 var s3 = new aws.S3();
 
+const s3_uri = 'https://s3-us-west-2.amazonaws.com/com.rma99.lights/'
+
 // build gif 
 function build_gif(msg, callback){
 
@@ -57,11 +59,13 @@ function build_gif(msg, callback){
 
             fs.readFile(gif_filename, function (err, data) {
                 if (err) throw err; // Something went wrong!
+
+                s3_filename = parseInt(+ new Date()) +"_"+ msg.toLowerCase().replace(" ", "_") +'.gif';
             
                 // filename & body
                 var params = {
                     Bucket: 'com.rma99.lights',
-                    Key: parseInt(+ new Date()) +"_"+ msg.toLowerCase().replace(" ", "_") +'.gif',
+                    Key: s3_filename,
                     Body: data
                 };
 
@@ -80,7 +84,7 @@ function build_gif(msg, callback){
                         callback(err);
                     } else {
                         console.log("Successfully uploaded gif");
-                        callback(false, {'filename': gif_filename});
+                        callback(false, {'filename': s3_uri + s3_filename});
                     }
                 });
 
