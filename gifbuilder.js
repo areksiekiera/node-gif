@@ -60,7 +60,7 @@ function build_gif(msg, callback){
             fs.readFile(gif_filename, function (err, data) {
                 if (err) throw err; // Something went wrong!
 
-                s3_filename = parseInt(+ new Date()) +"_"+ msg.toLowerCase().replace(" ", "_") +'.gif';
+                var s3_filename = parseInt(+ new Date()) +"_"+ msg.toLowerCase().replace(" ", "_") +'.gif';
             
                 // filename & body
                 var params = {
