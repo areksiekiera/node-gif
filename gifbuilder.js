@@ -83,8 +83,8 @@ function build_gif(msg, callback){
                         console.log("Error uploading data: ", err);
                         callback(err);
                     } else {
-                        console.log("Successfully uploaded gif");
-                        callback(false, {'filename': s3_uri + s3_filename});
+                        console.log("Successfully uploaded gif: ", s3_uri + s3_filename);
+                        callback(false, {'uri': s3_uri + s3_filename});
                     }
                 });
 
@@ -104,7 +104,7 @@ module.exports.build = function(message, callback){
     build_gif(message, function (err, data) {
         if (err) throw err;
 
-        callback(false, { 'filename': data['filename'] });
+        callback(false, { 'uri': data['uri'] });
     });
     
 };

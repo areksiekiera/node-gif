@@ -7,6 +7,7 @@ var app = express()
 var gb = require('./gifbuilder')
 
 app.use( bodyParser.json() );   
+app.set('json spaces', 40);
 
 app.post('/make_gif', function (req, res) {
 	
@@ -17,9 +18,15 @@ app.post('/make_gif', function (req, res) {
 	if ( !message || !message.trim().length )
 		return res.status(400).send('Message missing!');
 
-	gb.build(message, function(err, data){
-		res.send('File created: ' + data['filename'] );
-	})
+	try{
+		gb.build(message, function(err, data){
+			res.json({ "uri": data['uri'] });
+		})
+	}
+	catch(err){
+		console.log(err);
+		return res.status(500).send('Server error');
+	}
 	
   
 })
