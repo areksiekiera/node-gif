@@ -66,7 +66,8 @@ function build_gif(msg, callback){
                 var params = {
                     Bucket: 'com.rma99.lights',
                     Key: s3_filename,
-                    Body: data
+                    Body: data,
+                    ContentType: 'image/gif'
                 };
 
                 s3.putObject(params, function (err, pres) {
