@@ -19,11 +19,11 @@ function build_gif(msg, callback){
     msg = msg.trim();
 
     // start command
-    var command = ['-delay', '50', '-loop', '-1']; 
+    var command = ['-delay', '50', 'img_jpg/off.jpg', '-delay', '50', 'img_jpg/on.jpg', '-delay', '50', 'img_jpg/off.jpg']; 
     var gif_filename = '/tmp/';
 
-    command.push('img_png/off.png');
-    command.push('img_png/off.png');
+    var space = ['-delay', '20', 'img_jpg/off.jpg'];
+
 
     // add chars one by one and build gif name
     var last_char = '9'
@@ -31,23 +31,19 @@ function build_gif(msg, callback){
         var lc = msg[i].toLowerCase();
         
         if (last_char == lc){
-            command.push('img_png/off.png');
+            command = command.concat(space);
         }
         last_char = lc;
 
         if (lc.match(/[a-z]/i)){
-            command.push('img_png/'+lc+'.png');
+            command = command.concat(['-delay', '75', 'img_jpg/'+lc+'.jpg']);
             gif_filename += lc;
         }
         else{
-            command.push('img_png/off.png');
-            command.push('img_png/off.png');
+            command = command.concat(space);
             gif_filename += '_';
         }
     }
-
-    // add two whitespaces at the end 
-    command.push('img_png/off.png');
 
     gif_filename += '.gif';
 
