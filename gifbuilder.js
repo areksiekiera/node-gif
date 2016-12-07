@@ -40,7 +40,7 @@ function build_gif(msg, callback){
             gif_filename += lc;
         }
         else{
-            command = command.concat(space).concat(space).concat(space);
+            command = command.concat(space).concat(space).concat(space).concat(space).concat(space);
             gif_filename += '_';
         }
     }
