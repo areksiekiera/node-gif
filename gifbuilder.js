@@ -19,10 +19,10 @@ function build_gif(msg, callback){
     msg = msg.trim();
 
     // start command
-    var command = ['-delay', '50', 'img_png/off.png', '-delay', '50', 'img_png/on.png', '-delay', '50', 'img_png/off.png']; 
+    var command = ['-delay', '50', 'imgs/off.png', '-delay', '50', 'imgs/on.png', '-delay', '50', 'imgs/off.png']; 
     var gif_filename = '/tmp/';
 
-    var space = ['-delay', '20', 'img_png/off.png'];
+    var space = ['-delay', '20', 'imgs/off.png'];
 
 
     // add chars one by one and build gif name
@@ -36,7 +36,7 @@ function build_gif(msg, callback){
         last_char = lc;
 
         if (lc.match(/[a-z]/i)){
-            command = command.concat(['-delay', '75', 'img_png/'+lc+'.png']);
+            command = command.concat(['-delay', '75', 'imgs/'+lc+'.png']);
             gif_filename += lc;
         }
         else{
