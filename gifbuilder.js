@@ -47,6 +47,8 @@ function build_gif(msg, callback){
 
     gif_filename += '.gif';
 
+    command = command.concat(['-coalesce', '-layers', 'OptimizeFrame']);
+    
     command.push(gif_filename);
 
     // convert
